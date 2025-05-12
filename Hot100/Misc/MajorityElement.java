@@ -28,6 +28,5 @@ public class MajorityElement {
             nums[i] = Integer.parseInt(split[i]);
         }
         System.out.println(MajorityElement(nums));
-
     }
 }

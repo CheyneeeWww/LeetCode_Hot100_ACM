@@ -14,15 +14,13 @@ public class NextPermutation {
         while(i>=0 && nums[i]>=nums[i+1]){
             i--;
         }
-        if(i>=0){
-            int j = len-1;
-            //[5,3,7,6,4,1,2]
-            //   i
-            //下面这个<=很重要
-            while(nums[j]<=nums[i]){
+
+        if(i>=0) {
+            int j = len - 1;
+            while (nums[j] <= nums[i]) {
                 j--;
             }
-            swap(nums,i,j);
+            swap(nums, i, j);
         }
         reverse(nums,i+1,len-1);
     }
@@ -43,13 +41,15 @@ public class NextPermutation {
 
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        String s = sc.nextLine().replaceAll("[^\\d,-]","");
-        String[] split = s.split(",");
+        String s = sc.nextLine();
+        String[] split = s.split(" ");
         int[] nums = new int[split.length];
         for(int i =0;i<nums.length;i++){
             nums[i] = Integer.parseInt(split[i]);
         }
         NextPermutation(nums);
-        System.out.println(Arrays.toString(nums).replace(" ",""));
+        for(int i = 0;i<nums.length;i++){
+            System.out.print(nums[i]+" ");
+        }
     }
 }
