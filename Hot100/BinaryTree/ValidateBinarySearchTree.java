@@ -48,7 +48,7 @@ public class ValidateBinarySearchTree {
         return root;
     }
 
-    static int root_val = MIN_VALUE;
+    static long root_val = Long.MIN_VALUE;
     //中序遍历
     public static boolean isValidBST(TreeNode root){
         if(root==null){
