@@ -1,16 +1,14 @@
 package LeetCode.Hot100.BinaryTree;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 
 /**
  * @Author cnwang
- * @Date created in 14:44 2025/5/13
+ * @Date created in 15:51 2025/5/13
  */
-public class BinaryTreeRightSideView {
+public class FlattenBinaryTreeToLinkedList {
     public static class TreeNode{
         int val;
         TreeNode left;
@@ -32,13 +30,12 @@ public class BinaryTreeRightSideView {
         int index = 1;
         while(!queue.isEmpty() && index< nodes.length){
             TreeNode cur = queue.poll();
-            if(index< nodes.length && !nodes[index].equals("null")){
+            if(index<nodes.length && !nodes[index].equals("null")){
                 cur.left = new TreeNode(Integer.parseInt(nodes[index]));
                 queue.offer(cur.left);
             }
             index++;
-
-            if(index< nodes.length && !nodes[index].equals("null")){
+            if(index<nodes.length && !nodes[index].equals("null")){
                 cur.right = new TreeNode(Integer.parseInt(nodes[index]));
                 queue.offer(cur.right);
             }
@@ -47,39 +44,32 @@ public class BinaryTreeRightSideView {
         return root;
     }
 
-    public static List<Integer> rightSideView(TreeNode root){
-        List<Integer> res = new ArrayList<>();
-        if(root==null){
-            return res;
-        }
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        while(!queue.isEmpty()){
-            int size = queue.size();
-            for(int i = 0;i<size;i++){
-                TreeNode temp = queue.poll();
-                if(i == size-1){
-                    res.add(temp.val);
+    public static void flatten(TreeNode root){
+        while(root!=null){
+            TreeNode left = root.left;
+            TreeNode temp = left;
+            if(temp!=null){
+                while(temp.right!=null){
+                    temp = temp.right;
                 }
-                if(temp.left!=null){
-                    queue.offer(temp.left);
-                }
-                if(temp.right!=null){
-                    queue.offer(temp.right);
-                }
+                temp.right = root.right;
+                root.left = null;
+                root.right = left;
             }
+            root = root.right;
         }
-        return res;
     }
-
 
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         String s = sc.nextLine();
         String[] split = s.split(" ");
         TreeNode root = buildTree(split);
-        List<Integer> list = rightSideView(root);
-        System.out.println(list);
+        flatten(root);
+        while(root!=null){
+            System.out.print(root.val+" ");
+            root = root.right;
+        }
     }
 
 }
