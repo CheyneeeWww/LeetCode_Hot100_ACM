@@ -15,7 +15,7 @@ public class ImplementTriePrefixTree {
 
     private static final Node root = new Node();
 
-    public static void Trie(){};
+    //public static void Trie(){};
 
     public static void insert(String word){
         Node cur = root;

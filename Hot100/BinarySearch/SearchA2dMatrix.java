@@ -49,19 +49,18 @@ public class SearchA2dMatrix {
 
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        String s = sc.nextLine();
-        int target = sc.nextInt();
-        s = s.substring(2,s.length()-2);
-        String[] split = s.split("\\],\\[");
-        int[][] array = new int [split.length][];
-
-        for(int i=0;i< split.length;i++){
-            String[] nums = split[i].split(",");
-            array[i] =new int[nums.length];
-            for(int j=0;j<nums.length;j++){
-                array[i][j] = Integer.parseInt(nums[j]);
+        int m = sc.nextInt();
+        int n = sc.nextInt();
+        sc.nextLine();
+        int[][] array = new int [m][n];
+        for(int i = 0;i<m;i++){
+            String s = sc.nextLine();
+            String[] split = s.split(" ");
+            for(int j = 0;j<n;j++){
+                array[i][j] = Integer.parseInt(split[j]);
             }
         }
+        int target = sc.nextInt();
         //array这个就是二维数组
         System.out.println(SearchA2dMatrix(array,target));
     }

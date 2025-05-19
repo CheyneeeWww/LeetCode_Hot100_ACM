@@ -35,8 +35,8 @@ public class FindMinimumInRotatedSortedArray {
 
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        String s = sc.nextLine().replaceAll("[^\\d,-]","");
-        String[] split = s.split(",");
+        String s = sc.nextLine();
+        String[] split = s.split(" ");
         int[] nums = new int[split.length];
         for(int i = 0;i< nums.length;i++){
             nums[i] = Integer.parseInt(split[i]);
